@@ -48,11 +48,14 @@ events["x"] = events["location"].apply(
 events["y"] = events["location"].apply(
     lambda loc: loc[1] if isinstance(loc, list) else None
     )
-events
 
 events = events.drop(columns=["location"])
 events.columns = events.columns.str.replace(".", "_", regex=False)
-print(events.head())
+events = events.rename(columns={"index": "event_index"})
+
+#for _, row in events.iterrows()
+
+print(events.head(20))
 print(events.info())
 print(events.columns.to_list())
 
