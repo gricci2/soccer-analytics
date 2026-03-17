@@ -12,8 +12,6 @@ conn = pyodbc.connect(
 
 cursor = conn.cursor()
 
-
-
 file_path = "../data/raw/events/15946.json"
 
 with open(file_path, encoding="utf-8") as f:
