@@ -12,7 +12,7 @@ conn = pyodbc.connect(
 
 cursor = conn.cursor()
 
-file_path = "../data/raw/events/15946.json"
+file_path = "../data/raw/events/15956.json"
 
 with open(file_path, encoding="utf-8") as f:
     data = json.load(f)
@@ -60,9 +60,6 @@ for col in float_cols:
     )
 
     events[col] = events[col].replace({np.nan: None})
-
-
-events[float_cols] = events[float_cols].where(pd.notnull(events[float_cols]), None)
 
 obj_cols = ['player_name', 'pass_recipient_name']
 
