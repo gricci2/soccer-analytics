@@ -75,36 +75,16 @@ print("Check types after cleaning:")
 print(events.dtypes)
 print(events[float_cols + obj_cols].head())
 
-for i, row in events.iterrows():
-    try:
-        cursor.execute("""
+rows = list(events.itertuples(index=False, name=None))
+
+cursor.executemany("""
     INSERT INTO Events (
         id, event_index, period, timestamp, minute, second,
         possession, team_name, player_name, type_name,
         pass_recipient_name, pass_length, shot_statsbomb_xg, x, y
     )
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-""",
-    row['id'],
-    int(row['event_index']),
-    int(row['period']),
-    row['timestamp'],
-    int(row['minute']),
-    int(row['second']),
-    int(row['possession']),
-    row['team_name'],
-    row['player_name'],
-    row['type_name'],
-    row['pass_recipient_name'],
-    row['pass_length'],
-    row['shot_statsbomb_xg'],
-    row['x'],
-    row['y']
-)
-    except Exception as e:
-        print(f"❌ Error at row {i}")
-        print(row[float_cols + ['player_name', 'pass_recipient_name']])
-        raise e
+""", rows)
 
 conn.commit()
 
