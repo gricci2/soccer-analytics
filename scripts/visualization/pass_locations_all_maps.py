@@ -14,6 +14,7 @@ fig, ax = pitch.draw(figsize=(12, 8))
 
 for team in teams:
     subset = passes_df[passes_df['team_name']== team]
+    #pitch.kdeplot(subset['x'], subset['y'], ax=ax, cmap='Reds', fill=True) #heatmap
     pitch.scatter(subset['x'], subset['y'], ax=ax, alpha=0.5, label=team, s=100)
     #plt.scatter(subset['x'], subset['y'], alpha=0.5, label=team)
 
