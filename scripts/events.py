@@ -77,6 +77,7 @@ print(events[float_cols + obj_cols].head())
 
 rows = list(events.itertuples(index=False, name=None))
 
+cursor.fast_executemany = True
 cursor.executemany("""
     INSERT INTO Events (
         id, event_index, period, timestamp, minute, second,
