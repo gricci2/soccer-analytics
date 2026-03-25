@@ -58,5 +58,4 @@ def load_event(file_path):
         events[col] = events[col].replace({np.nan: None})
 
     rows = list(events.itertuples(index=False, name=None))
-    print(len(rows[0]))
     return rows
