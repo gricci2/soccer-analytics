@@ -29,7 +29,7 @@ insert_query = f"""
 
 batch_size = 1000
 all_rows = []
-
+sqlTableTotal = 0
 for match_file in os.listdir(data_dir):
     if not match_file.endswith(".json"):
         continue  # skip non-json files
@@ -37,7 +37,7 @@ for match_file in os.listdir(data_dir):
     rows = load_event(match_file)
 
     all_rows.extend(rows)
-
+    sqlTableTotal += len(rows)
     if len(all_rows) >= batch_size:
         cursor.executemany(insert_query, all_rows)
         all_rows = []
@@ -47,4 +47,5 @@ for match_file in os.listdir(data_dir):
 if all_rows:
     cursor.executemany(insert_query, all_rows)
 
+print(f"Total rows inserted: {sqlTableTotal}")
 conn.commit()
