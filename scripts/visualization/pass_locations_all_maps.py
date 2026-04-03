@@ -7,7 +7,7 @@ passes_df = pd.read_csv("../../data/processed/pass_locations_all.csv")
 
 passes_df = passes_df.dropna(subset=['x', 'y'])
 
-passes_df = passes_df.sample(n=50000, random_state=42)
+passes_df = passes_df.sample(n=200000, random_state=42)
 
 #team looping removed for heatmap
 #teams = passes_df['team_name'].unique()
