@@ -116,6 +116,8 @@ statsbomb_xg_grid_smooth = gaussian_filter(statsbomb_xg_grid, sigma=1)
 # -------------------------------
 # 5. Plot side-by-side comparison
 # -------------------------------
+
+threshold = 0.02
 pitch = Pitch(pitch_type='statsbomb', pitch_color='grass', line_color='white')
 fig, axs = plt.subplots(1, 2, figsize=(20, 7))
 
@@ -132,6 +134,27 @@ pcm1 = axs[0].imshow(
 fig.colorbar(pcm1, ax=axs[0]).set_label('Predicted xG')
 axs[0].set_title("Predicted xG (Logistic Regression: location, distance, angle)")
 
+# create pixel centers for numbers
+x_edges = np.linspace(0, 120, xg_grid.shape[1]+1)
+y_edges = np.linspace(0, 80, xg_grid.shape[0]+1)
+x_centers = (x_edges[:-1] + x_edges[1:]) / 2
+y_centers = (y_edges[:-1] + y_edges[1:]) / 2
+xx_centers, yy_centers = np.meshgrid(x_centers, y_centers)
+
+for i in range(xg_grid.shape[0]):
+    for j in range(xg_grid.shape[1]):
+        if xg_grid[i, j] > threshold:
+            axs[0].text(
+                xx_centers[i, j],
+                yy_centers[i, j],
+                f"{xg_grid[i, j]:.2f}",
+                color='black',
+                fontsize=5,
+                ha='center',
+                va='center',
+                clip_on=True
+            )
+
 # StatsBomb xG
 pitch.draw(ax=axs[1])
 pcm2 = axs[1].imshow(
@@ -144,5 +167,26 @@ pcm2 = axs[1].imshow(
 )
 fig.colorbar(pcm2, ax=axs[1]).set_label('StatsBomb xG')
 axs[1].set_title("StatsBomb xG")
+
+# pixel centers for StatsBomb numbers
+x_edges_sb = np.linspace(0, 120, statsbomb_xg_grid.shape[1]+1)
+y_edges_sb = np.linspace(0, 80, statsbomb_xg_grid.shape[0]+1)
+x_centers_sb = (x_edges_sb[:-1] + x_edges_sb[1:]) / 2
+y_centers_sb = (y_edges_sb[:-1] + y_edges_sb[1:]) / 2
+xx_centers_sb, yy_centers_sb = np.meshgrid(x_centers_sb, y_centers_sb)
+
+for i in range(statsbomb_xg_grid.shape[0]):
+    for j in range(statsbomb_xg_grid.shape[1]):
+        if statsbomb_xg_grid[i, j] > threshold:
+            axs[1].text(
+                xx_centers_sb[i, j],
+                yy_centers_sb[i, j],
+                f"{statsbomb_xg_grid[i, j]:.2f}",
+                color='black',
+                fontsize=5,
+                ha='center',
+                va='center',
+                clip_on=True
+            )
 
 plt.show()
