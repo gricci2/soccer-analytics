@@ -22,9 +22,9 @@ insert_query = f"""
         INSERT INTO {TABLE} (
             id, event_index, period, timestamp, minute, second, possession, 
             team_name, player_name, type_name,
-            pass_recipient_name, pass_length, shot_statsbomb_xg, x, y
+            pass_recipient_name, pass_length, shot_statsbomb_xg, shot_outcome_name, x, y
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """
 
 batch_size = 1000

@@ -24,7 +24,8 @@ def load_event(file_path):
         "location",
         "pass.recipient.name",
         "pass.length",
-        "shot.statsbomb_xg"
+        "shot.statsbomb_xg",
+        "shot.outcome.name"
     ]
 
     events = df[columns].copy()
@@ -50,7 +51,7 @@ def load_event(file_path):
 
         events[col] = events[col].replace({np.nan: None})
 
-    obj_cols = ['player_name', 'pass_recipient_name']
+    obj_cols = ['player_name', 'pass_recipient_name', 'shot_outcome_name']
 
     for col in obj_cols:
         events[col] = events[col].apply(lambda x: x.strip() if isinstance(x, str) and x.strip() != "" else None)
