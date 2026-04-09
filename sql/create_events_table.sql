@@ -21,6 +21,7 @@ BEGIN
         pass_recipient_name NVARCHAR(100),
         pass_length FLOAT,
         shot_statsbomb_xg FLOAT,
+        shot_outcome_name NVARCHAR(50),
         x FLOAT,
         y FLOAT
     );
