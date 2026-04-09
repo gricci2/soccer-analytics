@@ -23,7 +23,6 @@ goal_x = 120
 shots_df['angle_to_goal'] = np.arctan2(goal_top - shots_df['y'], goal_x - shots_df['x']) - \
                             np.arctan2(goal_bottom - shots_df['y'], goal_x - shots_df['x'])
 
-# take absolute value (just in case)
 shots_df['angle_to_goal'] = np.abs(shots_df['angle_to_goal'])
 
 X = shots_df[['x', 'y', 'distance_to_goal', 'angle_to_goal']]
@@ -58,8 +57,8 @@ print(model.intercept_)
 #create predicted xG heatmap
 
 # create x and y ranges
-x_range = np.arange(0, 121, 1)  # 0 to 120, step 5
-y_range = np.arange(0, 81, 1)   # 0 to 80, step 5
+x_range = np.arange(0, 121, 1)
+y_range = np.arange(0, 81, 1)
 
 # create meshgrid
 xx, yy = np.meshgrid(x_range, y_range)
@@ -109,19 +108,15 @@ counts, _, _ = np.histogram2d(
     bins=[y_edges, x_edges]
 )
 
-counts[counts == 0] = 1  # avoid divide by zero
+counts[counts == 0] = 1
 statsbomb_xg_grid = hist / counts
 statsbomb_xg_grid_smooth = gaussian_filter(statsbomb_xg_grid, sigma=1)
-
-# -------------------------------
-# 5. Plot side-by-side comparison
-# -------------------------------
 
 threshold = 0.02
 pitch = Pitch(pitch_type='statsbomb', pitch_color='grass', line_color='white')
 fig, axs = plt.subplots(1, 2, figsize=(20, 7))
 
-# Predicted xG
+#predicted xG
 pitch.draw(ax=axs[0])
 pcm1 = axs[0].imshow(
     xg_grid_smooth,
@@ -155,7 +150,7 @@ for i in range(xg_grid.shape[0]):
                 clip_on=True
             )
 
-# StatsBomb xG
+#StatsBomb xG
 pitch.draw(ax=axs[1])
 pcm2 = axs[1].imshow(
     statsbomb_xg_grid_smooth,
@@ -168,7 +163,7 @@ pcm2 = axs[1].imshow(
 fig.colorbar(pcm2, ax=axs[1]).set_label('StatsBomb xG')
 axs[1].set_title("StatsBomb xG")
 
-# pixel centers for StatsBomb numbers
+#pixel centers for StatsBomb numbers
 x_edges_sb = np.linspace(0, 120, statsbomb_xg_grid.shape[1]+1)
 y_edges_sb = np.linspace(0, 80, statsbomb_xg_grid.shape[0]+1)
 x_centers_sb = (x_edges_sb[:-1] + x_edges_sb[1:]) / 2
