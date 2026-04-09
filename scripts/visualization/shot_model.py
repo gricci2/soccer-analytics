@@ -95,8 +95,8 @@ xg_grid_smooth = gaussian_filter(xg_grid, sigma=0)
 # plot heatmap with imshow
 pcm = ax.imshow(
     xg_grid_smooth, 
-    origin='lower',            # (0,0) at bottom-left
-    extent=[0, 120, 0, 80],    # pitch dimensions
+    origin='lower',            
+    extent=[0, 120, 0, 80],    
     cmap='Reds',
     alpha=0.4,
     aspect='auto'
@@ -111,16 +111,16 @@ y_centers = (y_edges[:-1] + y_edges[1:]) / 2
 # create 2D grid of centers
 xx_centers, yy_centers = np.meshgrid(x_centers, y_centers)
 # loop over every square in the grid
-threshold = 0.02  # hide values <= 0.02
-for i in range(xx.shape[0]):      # y-axis
-    for j in range(xx.shape[1]):  # x-axis
+threshold = 0.02  
+for i in range(xx.shape[0]):
+    for j in range(xx.shape[1]):
         if xg_grid[i, j] > threshold:
             ax.text(
                 xx_centers[i, j],
                 yy_centers[i, j],
-                f"{xg_grid[i, j]:.2f}",  # exact predicted xG
+                f"{xg_grid[i, j]:.2f}",  
                 color='black', 
-                fontsize=5,              # small font to fit grid
+                fontsize=5,              
                 ha='center', 
                 va='center',
                 clip_on=True
