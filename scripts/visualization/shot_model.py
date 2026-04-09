@@ -98,9 +98,34 @@ pcm = ax.imshow(
     origin='lower',            # (0,0) at bottom-left
     extent=[0, 120, 0, 80],    # pitch dimensions
     cmap='Reds',
-    alpha=0.8,
+    alpha=0.4,
     aspect='auto'
 )
+
+# pixel centers
+x_edges = np.linspace(0, 120, xg_grid.shape[1]+1)
+y_edges = np.linspace(0, 80, xg_grid.shape[0]+1)
+x_centers = (x_edges[:-1] + x_edges[1:]) / 2
+y_centers = (y_edges[:-1] + y_edges[1:]) / 2
+
+# create 2D grid of centers
+xx_centers, yy_centers = np.meshgrid(x_centers, y_centers)
+# loop over every square in the grid
+threshold = 0.02  # hide values <= 0.02
+for i in range(xx.shape[0]):      # y-axis
+    for j in range(xx.shape[1]):  # x-axis
+        if xg_grid[i, j] > threshold:
+            ax.text(
+                xx_centers[i, j],
+                yy_centers[i, j],
+                f"{xg_grid[i, j]:.2f}",  # exact predicted xG
+                color='black', 
+                fontsize=5,              # small font to fit grid
+                ha='center', 
+                va='center',
+                clip_on=True
+            )
+
 # add colorbar
 cbar = fig.colorbar(pcm, ax=ax)
 cbar.set_label('Predicted xG')
