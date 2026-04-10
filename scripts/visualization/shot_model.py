@@ -58,8 +58,8 @@ print(model.intercept_)
 #create predicted xG heatmap
 
 # create x and y ranges
-x_range = np.arange(0, 121, 1)  # 0 to 120, step 5
-y_range = np.arange(0, 81, 1)   # 0 to 80, step 5
+x_range = np.arange(0, 121, 1)
+y_range = np.arange(0, 81, 1)
 
 # create meshgrid
 xx, yy = np.meshgrid(x_range, y_range)
