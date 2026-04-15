@@ -27,7 +27,6 @@ First, the full dataframe on the SQL Server is queried for passes (in this case)
 
 <img width="696" height="306" alt="image" src="https://github.com/user-attachments/assets/0c52c8db-104d-4777-a621-fb1759607241" />
 
-
 <img width="253" height="147" alt="image" src="https://github.com/user-attachments/assets/39b64f5b-7d4a-4e68-b9ce-598fb8261942" />
 
 Then, the csv file data of passes is used to create a visualization through matplotlib and mplsoccer.
