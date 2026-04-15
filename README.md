@@ -38,5 +38,18 @@ Here is the final output visualization of all passes plotted as a heatmap.
 <img width="1200" height="800" alt="passheatmap_allteams" src="https://github.com/user-attachments/assets/f5f50b91-5541-49d8-a9c1-9e9bb03d3b5c" />
 
 ## Visualizations
-Here are the rest of the visualizations plotted throughout the project.
+Here are some other visualizations plotted throughout the project as well as an example of a Power BI analysis. At the bottom is the predicted xG that was created using a Logistic Regression with scikit-learn.
+
+<img width="1200" height="800" alt="shotheatmap_allteams" src="https://github.com/user-attachments/assets/ded332c2-48d3-4f35-8338-81634bb7547c" />
+
+<img width="1200" height="800" alt="shotheatmapxG_allteams" src="https://github.com/user-attachments/assets/0f1302e5-2ca5-407c-bc29-1a4838fb60b3" />
+
+<img width="1657" height="932" alt="powerbi_example1" src="https://github.com/user-attachments/assets/62ea0dd9-e725-4996-87f4-caddd88a9d46" />
+
+<img width="2000" height="700" alt="shot_model_predictedxG_compare" src="https://github.com/user-attachments/assets/42959c86-9da7-444b-9d03-b387fca5ac2d" />
+
+<img width="2000" height="700" alt="shot_model_predictedxG_compare_with_numbers" src="https://github.com/user-attachments/assets/d6d9e45e-5350-4f94-b2b3-701541c42add" />
+
+
+
 
