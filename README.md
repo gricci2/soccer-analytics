@@ -1,6 +1,6 @@
 # Soccer Analytics Project
 
-This is an end-to-end data analysis project using StatsBomb open data. The data processed in this project is based on soccer match "Events" including shots, passes, tackles, etc and includes information such as location of event, player, team, etc. The project was intended to be used as a learning experience and a way to be exposed to the full pipeline of tools needed in the progression below:
+This is an end-to-end data analysis project using StatsBomb open data. The data processed in this project is based on soccer match "Events" including shots, passes, tackles, etc and includes information such as location of event, player, team, etc. A total of 3,464 matches produced approximately 12 million rows of data. The project was intended to be used as a learning experience and a way to be exposed to the full pipeline of tools needed in the progression below:
 
 StatsBomb JSON → Python (pandas) → SQL Server LocalDB → SQL analysis → visualization → machine learning
 
@@ -50,6 +50,11 @@ Here are some other visualizations plotted throughout the project as well as an 
 
 <img width="2000" height="700" alt="shot_model_predictedxG_compare_with_numbers" src="https://github.com/user-attachments/assets/d6d9e45e-5350-4f94-b2b3-701541c42add" />
 
+Model: Logistic Regression (scikit-learn)
+Target: Binary outcome (goal vs non-goal)
+Train/Test Split: 80/20
+Results
+Accuracy: ~0.89 (inflated due to class imbalance)
+ROC AUC: ~0.75
 
-
-
+The model performs well using only geometric features, but underperforms compared to StatsBomb due to missing contextual variables (e.g., shot type, pressure, body part).
